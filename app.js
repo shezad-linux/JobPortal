@@ -8,6 +8,10 @@ import cors from "cors";
 import { errorMiddleware } from "./middlewares/error.js";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
+import defaultRoute from "./routes/defaultRoute.js";
+
+
+//application logic
 
 const app = express();
 config({ path: "./config/config.env" });
@@ -30,6 +34,7 @@ app.use(
     tempFileDir: "/tmp/",
   })
 );
+app.use("/", defaultRoute);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/job", jobRouter);
 app.use("/api/v1/application", applicationRouter);
